@@ -48,11 +48,10 @@ The pipeline follows this processing flow:
 2. **Stream Muxing** → Streams are batched together with nvstreammux
 3. **Object Detection** → YOLOv8n model detects people in the video
 4. **Object Tracking** → NvTracker assigns and maintains unique IDs
-5. **Video Conversion** → Format conversion to RGBA for analytics
-6. **Line Crossing Analytics** → nvdsanalytics detects line crossing events
-7. **Face Extraction** → When line crossings are detected, faces are saved
-8. **Visualization** → Results are displayed with nvmultistreamtiler and nvdsosd
-9. **Output** → Rendered to screen with nveglglessink
+5. **Line Crossing Analytics** → nvdsanalytics detects line crossing events
+6. **Face Extraction** → When line crossings are detected, faces are saved
+7. **Visualization** → Results are displayed with nvmultistreamtiler and nvdsosd
+8. **Output** → Rendered to screen with nveglglessink
 
 ## Configuration
 
@@ -65,8 +64,8 @@ line-crossing-Entry=x1;y1;x2;y2;x3;y3;x4;y4;
 ```
 
 Where:
-- (x1,y1) and (x2,y2) define the direction vector
-- (x3,y3) and (x4,y4) define the actual line to be crossed
+- (x1, y1) and (x2, y2) define the **direction vector** (the direction in which crossing is counted)
+- (x3, y3) and (x4, y4) define the **actual line segment** to be crossed
 
 You can use the included `line_create.py` utility to visually define these lines:
 
@@ -97,7 +96,7 @@ When a person crosses a defined line, the system:
 Run the pipeline with one or more RTSP URLs:
 
 ```bash
-python3 main.py rtsp://camera1_ip:port/stream rtsp://camera2_ip:port/stream
+python3 main.py file:///home/dev1/Projects/deepstream_face_linecross/1.mp4
 ```
 
 The system will start processing streams and save face images when line crossings are detected.
@@ -116,11 +115,4 @@ The system provides the following outputs:
 2. **Visual Display**: Annotated video with bounding boxes and line crossing indicators
 3. **Face Images**: Saved to disk with naming format: `YYYYMMDD_HHMMSS_[Entry/Exit]_id[ID]_face.jpg`
 
-## Extending the Pipeline
 
-This pipeline can be extended to:
-- Support additional object classes by modifying the YOLO model and configuration
-- Add more analytics (e.g., zone occupancy, crowd counting) using nvdsanalytics
-- Implement additional processing for saved face images (e.g., face recognition)
-- Add a database connection to log events and statistics
-- Create a web interface for monitoring and configuration
