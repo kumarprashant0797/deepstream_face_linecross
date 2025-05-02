@@ -1,0 +1,9 @@
+[tracker]
+tracker-width=640
+tracker-height=480
+gpu-id=0
+ll-lib-file=libnvds_nvmultiobjecttracker.so
+ll-config-file=tracker_config.yml
+enable-batch-process=1
+enable-past-frame=1
+display-tracking-id=1
