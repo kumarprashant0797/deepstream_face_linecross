@@ -115,4 +115,9 @@ The system provides the following outputs:
 2. **Visual Display**: Annotated video with bounding boxes and line crossing indicators
 3. **Face Images**: Saved to disk with naming format: `YYYYMMDD_HHMMSS_[Entry/Exit]_id[ID]_face.jpg`
 
+### Person Detection and Tracking
+![Person Detection](screenshots/sample_1.png)
+![Person Detection](screenshots/sample_2.png)
+![Person Detection](screenshots/3.png)
+![Person Detection](screenshots/4.png)
 
